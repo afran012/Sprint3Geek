@@ -2,10 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
 import reportWebVitals from './reportWebVitals';
+// estilos bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
+import AppRouter from './routers/AppRouter';
 
 ReactDOM.render(
   <React.StrictMode>
-    aiuda
+    <AppRouter/>
   </React.StrictMode>,
   document.getElementById('root')
 );
