@@ -10,5 +10,9 @@ export const userFormHook = (initialState={}) => {
             [target.name]:target.value
         })
     }
-    return {handleInputChange,FormHook}
+
+    const reset = () => { 
+        setFormHook(initialState); 
+    };
+    return {handleInputChange,reset,FormHook}
 }
