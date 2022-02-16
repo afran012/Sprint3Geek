@@ -38,7 +38,7 @@ export const loginSync = (id,displayname)=>{
 
 
 export const logoutSincrono = () => { return {
-    type: types.logout,
+    type: types.cerrarSesion,
             payload: {},
     };
 };

@@ -32,11 +32,11 @@ const LoginUser = () => {
     <div>
     <h1>Formulario</h1>
     <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formulario">
+        <Form.Group className="mb-3" >
             <Form.Label>Correo electronico</Form.Label>
             <Form.Control type="email" placeholder="Ingrese su email" value={email} onChange={handleInputChange} name="email" />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formulario">
+        <Form.Group className="mb-3" >
             <Form.Label>Contraseña</Form.Label>
             <Form.Control type="password" placeholder="Ingrese su contraseña" value={password} onChange={handleInputChange} name="password" />
         </Form.Group>
