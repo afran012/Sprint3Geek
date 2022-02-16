@@ -37,7 +37,7 @@ export const listarPeliculaAsincrono = () => {
     return async (dispatch) => {
         const querySnapshot = await getDocs(collection(db, "peliculas"));
         const pelis = [];
-        console.log(querySnapshot);
+        //console.log(querySnapshot);
         querySnapshot.forEach((doc) => {
             //console.log(doc);
             //console.log(doc._key.path.segments[6]);
@@ -87,7 +87,7 @@ export const modificarPeliculaAsincrono = (id,pelicula) => {
         //deleteDoc(doc(db, "peliculas", pelicula));
         //dispatch(modificarPeliculaSincrono())
         
-        //updateDoc(doc(db, "peliculas", id), pelicula);
+        updateDoc(doc(db, "peliculas", id), pelicula);
         dispatch(listarPeliculaAsincrono())
         
     };

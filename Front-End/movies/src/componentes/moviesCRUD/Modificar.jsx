@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { registroPeliculaAsincrono } from '../../action/actionMovies';
+import { modificarPeliculaAsincrono, registroPeliculaAsincrono } from '../../action/actionMovies';
+import { FileUpload } from '../../helpers/FileUpload';
 import { userFormHook } from '../../hooks/userFormHook';
 
-const Modificar = (pelicula) => {
+const Modificar = ({pelicula}) => {
     const dispatch = useDispatch();
     console.log(pelicula);
     //console.log(pelicula.pelicula? pelicula.pelicula.image : {});
@@ -21,10 +22,51 @@ const Modificar = (pelicula) => {
         releasedate: "",
     });
 
+
+    const handleFileChange = (e) => {
+        console.log(e.target.files[0]);
+        FileUpload(e.target.files[0])
+            .then((response) => {
+                setFormHook({
+                    ...FormHook,
+                    image: response
+                })
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
+
+
+
     const getValues = () => {
-        if (pelicula.pelicula) {
-            setFormHook(pelicula.pelicula)
-            console.log(pelicula.pelicula);
+        if (pelicula) {
+
+            const {
+                description,
+                director,
+                duration,
+                genre,
+                image,
+                name,
+                ranking,
+                releaseage,
+                releasedate,
+        
+            } = pelicula
+
+            setFormHook({
+                description,
+                director,
+                duration,
+                genre,
+                image,
+                name,
+                ranking,
+                releaseage,
+                releasedate,
+            })
+            //console.log(FormHook);
         } else {
             console.log(pelicula);
         }
@@ -32,20 +74,8 @@ const Modificar = (pelicula) => {
 
 
     const handleModify = (e) => {
-        //e.preventDefault()
-        const {
-            description,
-            director,
-            duration,
-            genre,
-            image,
-            name,
-            ranking,
-            releaseage,
-            releasedate,
-
-        } = FormHook
-        dispatch(registroPeliculaAsincrono(FormHook));
+        //e.preventDefault() 
+        dispatch(modificarPeliculaAsincrono(pelicula.id,FormHook));
         reset();
     }
 
@@ -70,9 +100,8 @@ const Modificar = (pelicula) => {
                                 className="form-control"
                                 placeholder="url image"
                                 name="image"
-                                
-
-
+                                style={{ display: "none" }}
+                                onChange={handleFileChange}
                             />
                             <button
                                 type="button"
