@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, /*query,*/ updateDoc/*, where*/ } from "firebase/firestore";
 import { db } from "../FireBase/fireBase";
 import { typesMovies } from "../types/typesMovies";
 

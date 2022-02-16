@@ -97,6 +97,7 @@ export const MoviesCRUD = () => {
 
     useEffect(() => {
         dispatch(listarPeliculaAsincrono());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

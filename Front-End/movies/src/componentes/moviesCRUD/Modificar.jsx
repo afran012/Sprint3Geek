@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-import { modificarPeliculaAsincrono, registroPeliculaAsincrono } from '../../action/actionMovies';
+import { modificarPeliculaAsincrono } from '../../action/actionMovies';
 import { FileUpload } from '../../helpers/FileUpload';
 import { userFormHook } from '../../hooks/userFormHook';
 
@@ -83,6 +83,7 @@ const Modificar = ({pelicula}) => {
     useEffect(() => {
         getValues()
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pelicula])
 
 
