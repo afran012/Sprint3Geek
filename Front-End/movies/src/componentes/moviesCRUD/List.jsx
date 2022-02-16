@@ -9,6 +9,7 @@ export const List = () => {
     const { pelicula } = useSelector((store) => store.pelicula);
     //console.log(pelicula);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleModificar = useCallback((peli) => {
         //console.log(peli);
         setPeliModificar(peli)

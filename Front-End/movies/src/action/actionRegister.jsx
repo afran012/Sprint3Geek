@@ -1,5 +1,5 @@
-import { getAuth, signInWithPopup, createUserWithEmailAndPassword, updateProfile, } from "firebase/auth"
-import { authGoogle } from "../FireBase/fireBase"
+import { getAuth, /*signInWithPopup, */createUserWithEmailAndPassword, updateProfile, } from "firebase/auth"
+//import { authGoogle } from "../FireBase/fireBase"
 import { types } from "../types/types"
 
 
