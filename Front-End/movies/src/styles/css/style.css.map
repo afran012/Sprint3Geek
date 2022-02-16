@@ -1,0 +1,18 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,KAAK,CAAC;EACF,eAAe,CAAA,QAAC;EAChB,iBAAiB,CAAA,QAAC;EAClB,oBAAoB,CAAA,QAAC;EACrB,aAAa,CAAA,SAAC;EACd,cAAc,CAAA,QAAC;EACf,aAAa,CAAA,QAAC;EACd,YAAY,CAAA,QAAC;EACb,gBAAgB,CAAA,QAAC;EACjB,aAAa,CAAA,QAAC;EACd,cAAc,CAAA,QAAC;CAClB;;AAGD,AAAA,aAAa,CAAC;EACV,WAAW,EAAE,MAAM;EACnB,SAAS,EAAE,IAAI;EACf,WAAW,EAAE,IAAI;EACjB,cAAc,EAAE,OAAO;EACvB,KAAK,EAAE,iBAAiB;CAC3B;;AEpBD,AAAA,CAAC,CAAC;EACE,UAAU,EAAE,UAAU;EACtB,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,IAAI;EAChB,eAAe,EAAE,IAAI;EACrB,OAAO,EAAE,IAAI;CACd;;AGRH,AAAA,QAAQ,CAAC;EACL,SAAS,EAAE,GAAG;EACd,UAAU,EAAE,GAAG;CAElB;;AAED,AAAA,cAAc,CAAA;EACV,gBAAgB,EAAE,OAAO;CAE5B;;AAOD,AAAA,SAAS,CAAA;EACL,KAAK,EAAE,KAAK;EACZ,gBAAgB,EAAE,KAAK;CAE1B",
+    "sources": [
+        "style.scss",
+        "partials/_variables.scss",
+        "partials/_fonts.scss",
+        "partials/_baserules.scss",
+        "partials/_body.scss",
+        "partials/_header.scss",
+        "partials/_navbar.scss",
+        "partials/_main.scss",
+        "partials/_discount.scss",
+        "partials/_cart.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}

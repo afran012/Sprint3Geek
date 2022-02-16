@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom'
 import { userFormHook } from '../../hooks/userFormHook'
+import { useDispatch } from "react-redux"
+import { registroEmailPasswordNombre } from '../../action/actionRegister'
 
 
 const Register = () => {
+  const  dispatch = useDispatch()
     
     const {handleInputChange, FormHook} = userFormHook({
         username:"",
@@ -11,6 +14,7 @@ const Register = () => {
     })
     const handleSubmit = (e)=>{
         e.preventDefault()
+        dispatch(registroEmailPasswordNombre(email, password, username));
     }
     const {password,email,username}=FormHook
 
@@ -62,7 +66,7 @@ const Register = () => {
         </div>
 
         <div className="itemlogin">
-          <button className="btnlogin" type="submit">
+          <button className="btnlogin" type="submit" >
             Registrar
           </button>
         </div>

@@ -1,15 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// import './index.css';
+import "./styles/css/style.css"
 import reportWebVitals from './reportWebVitals';
 // estilos bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css'
 import AppRouter from './routers/AppRouter';
+//import { ProviderId } from 'firebase/auth';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
 ReactDOM.render(
+  <Provider store={store}>
   <React.StrictMode>
     <AppRouter/>
-  </React.StrictMode>,
+  </React.StrictMode>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
