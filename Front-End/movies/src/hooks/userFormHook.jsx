@@ -14,5 +14,5 @@ export const userFormHook = (initialState={}) => {
     const reset = () => { 
         setFormHook(initialState); 
     };
-    return {handleInputChange,reset,FormHook}
+    return {handleInputChange,reset,FormHook,setFormHook}
 }

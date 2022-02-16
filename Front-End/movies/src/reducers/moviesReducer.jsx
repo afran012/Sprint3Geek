@@ -10,12 +10,16 @@ export const moviesReducer = (state = initialState, action) => {
             return {
                 pelicula: [action.payload],
             };
-        case typesMovies.listar: return {
-            ...state,
-        };
-        case typesMovies.eliminar: return {
-            ...state,
-        };
+        case typesMovies.listar:
+            return {
+                pelicula: [...action.payload],
+            };
+       /* case typesMovies.eliminar:
+            console.log(state.pelicula);
+            //console.log(...action.payload);
+            return {
+                pelicula: [...action.payload],
+            };*/
         default:
             return state;
     }

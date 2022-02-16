@@ -1,35 +1,13 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import { FileUpload } from "../../helpers/FileUpload";
-import { List } from "./List";
-//import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
-import { listarPeliculaAsincrono, registroPeliculaAsincrono } from "../../action/actionMovies";
-import { userFormHook } from "../../hooks/userFormHook";
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux';
+import { registroPeliculaAsincrono } from '../../action/actionMovies';
+import { userFormHook } from '../../hooks/userFormHook';
 
-const Input = styled.input` background-color: #db7093;
-`;
-
-export const MoviesCRUD = () => {
+const Modificar = (pelicula) => {
     const dispatch = useDispatch();
+    console.log(pelicula);
+    //console.log(pelicula.pelicula? pelicula.pelicula.image : {});
 
-    /*const formik = useFormik({
-        initialValues: {
-            description: "",
-            director: "",
-            duration: "",
-            genre: "",
-            image: "",
-            name: "",
-            ranking: 0,
-            releaseage: 0,
-            releasedate: "",
-        },
-        onSubmit: (data) => {
-            console.log(data);
-            dispatch(registroPeliculaAsincrono(data));
-        },
-    });*/
 
     const { FormHook, handleInputChange, setFormHook, reset } = userFormHook({
         description: "",
@@ -43,42 +21,19 @@ export const MoviesCRUD = () => {
         releasedate: "",
     });
 
+    const getValues = () => {
+        if (pelicula.pelicula) {
+            setFormHook(pelicula.pelicula)
+            console.log(pelicula.pelicula);
+        } else {
+            console.log(pelicula);
+        }
+    }
 
 
-    const handleInputClick = () => {
-        document.querySelector("#inputImage").click();
-    };
-
-    const handleFileChange = (e) => {
-        console.log(e.target.files[0]);
-        FileUpload(e.target.files[0])
-            .then((response) => {
-                setFormHook({
-                    ...FormHook,
-                    image: response
-                })
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-    };
-
-    const {
-        description,
-        director,
-        duration,
-        genre,
-        image,
-        name,
-        ranking,
-        releaseage,
-        releasedate,
-
-    } = FormHook
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const data = {
+    const handleModify = (e) => {
+        //e.preventDefault()
+        const {
             description,
             director,
             duration,
@@ -89,15 +44,17 @@ export const MoviesCRUD = () => {
             releaseage,
             releasedate,
 
-        }
-        dispatch(registroPeliculaAsincrono(data));
+        } = FormHook
+        dispatch(registroPeliculaAsincrono(FormHook));
         reset();
     }
 
 
     useEffect(() => {
-        dispatch(listarPeliculaAsincrono());
-    }, []);
+        getValues()
+
+    }, [pelicula])
+
 
     return (
         <div>
@@ -106,21 +63,22 @@ export const MoviesCRUD = () => {
                 <div className="row">
                     <div className="col-12">
                         <h3 className="text-center">Movies</h3>
-                        <form className="form-group" onSubmit={handleSubmit}>
+                        <form className="form-group" >
                             <input
                                 id="inputImage"
                                 type="file"
                                 className="form-control"
                                 placeholder="url image"
                                 name="image"
-                                required
-                                style={{ display: "none" }}
-                                onChange={handleFileChange}
+                                
+
+
                             />
                             <button
                                 type="button"
                                 className="btn btn-dark"
-                                onClick={() => handleInputClick()}> Imagen
+                            >
+                                Imagen
                             </button>
                             <input
                                 value={FormHook.name}
@@ -218,17 +176,22 @@ export const MoviesCRUD = () => {
 
                             </textarea>
                             <div className="d-grid gap-2 mx-auto mt-2">
-                                <Input
+
+                                <button
                                     value="Save"
                                     type="submit"
                                     className="btn btn-outline-dark"
-                                />
+                                    onClick={() => { handleModify() }}
+                                >
+                                    Modificar
+                                </button>
                             </div>
                         </form>
                     </div>
-                    <List />
                 </div>
             </div>
         </div>
-    );
-};
+    )
+}
+
+export default Modificar
