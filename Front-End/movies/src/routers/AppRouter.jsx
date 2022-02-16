@@ -2,7 +2,7 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { MoviesCRUD } from '../componentes/moviesCRUD/MoviesCRUD'
-import { Navbar } from '../componentes/navbar/Navbar'
+import { NavbarMain } from '../componentes/navbar/Navbar'
 import LoginUser from '../container/users/LoginUser'
 import Register from '../container/users/Register'
 import DashboardRoutes from './DashboardRoutes'
@@ -29,10 +29,15 @@ const AppRouter = () => {
     });
   }, []);
 
+  if (checking) {
+    return <h1>Espere...</h1>;
+    }
+
 
   return (
     <BrowserRouter>
-      <Navbar />
+      <NavbarMain/>
+      
       <Routes>
         <Route path='/login' element={
           <PublicRoute isAuthenticated={isLoggedIn}>
@@ -45,9 +50,9 @@ const AppRouter = () => {
           </PublicRoute>
         } />
         <Route path='/movies' element={
-          <PublicRoute isAuthenticated={isLoggedIn}>
+          <PrivateRoute isAuthenticated={isLoggedIn}>
             <MoviesCRUD />
-          </PublicRoute>
+          </PrivateRoute>
         } />
         <Route path="/*" element={
           <PrivateRoute isAuthenticated={isLoggedIn}>

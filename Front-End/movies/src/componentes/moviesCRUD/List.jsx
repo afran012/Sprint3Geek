@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { eliminarPeliculaAsincrono } from "../../action/actionMovies";
+import { eliminarPeliculaAsincrono, listarPeliculaAsincrono } from "../../action/actionMovies";
 import Modificar from "./Modificar";
 
 export const List = () => {
@@ -9,10 +9,15 @@ export const List = () => {
     const { pelicula } = useSelector((store) => store.pelicula);
     //console.log(pelicula);
 
-    const handleModificar = (peli) => {
+    const handleModificar = useCallback((peli) => {
         //console.log(peli);
         setPeliModificar(peli)
-    }
+    })
+
+    useEffect(() => {
+
+    }, [pelicula])
+    
     
     return (
         <div>
@@ -51,7 +56,8 @@ export const List = () => {
                                 <button
                                     className="btn btn-danger btn-sm float-end"
                                     onClick={() => {
-                                        dispatch(eliminarPeliculaAsincrono(peli.id))
+                                        dispatch(eliminarPeliculaAsincrono(peli.id));
+                                        dispatch(listarPeliculaAsincrono());
                                     }}
                                 >
                                     Eliminar

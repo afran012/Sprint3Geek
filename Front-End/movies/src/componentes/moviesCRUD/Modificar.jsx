@@ -6,7 +6,7 @@ import { userFormHook } from '../../hooks/userFormHook';
 
 const Modificar = ({pelicula}) => {
     const dispatch = useDispatch();
-    console.log(pelicula);
+    //console.log(pelicula);
     //console.log(pelicula.pelicula? pelicula.pelicula.image : {});
 
 
@@ -68,7 +68,7 @@ const Modificar = ({pelicula}) => {
             })
             //console.log(FormHook);
         } else {
-            console.log(pelicula);
+            //console.log(pelicula);
         }
     }
 

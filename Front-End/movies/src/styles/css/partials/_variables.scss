@@ -1,0 +1,21 @@
+:root {
+    --color-primary: #fee0c7;
+    --color-secundary: #A786DF;
+    --color-font-primary: #FC462D;
+    --font-family: "Nunito";
+    --color-yellow: #c4d791;
+    --color-green: #85d185;
+    --color-gray: #535353;
+    --color-tertiary: #D9D4E7;
+    --color-black: #0E172C;
+    --bs-secondary: #0E172C;
+}
+
+
+.body1Regular {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.005em;
+    color: var(--color-gray);
+}
