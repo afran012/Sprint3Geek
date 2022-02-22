@@ -1,7 +1,7 @@
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Carrousel from '../componentes/carrousel/Carrousel'
+import Carrousel, { ControlledCarousel } from '../componentes/carrousel/Carrousel'
 import { MoviesCRUD } from '../componentes/moviesCRUD/MoviesCRUD'
 import { NavbarMain } from '../componentes/navbar/Navbar'
 import LoginUser from '../container/users/LoginUser'
@@ -38,7 +38,7 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <NavbarMain/>
-      <Carrousel/>
+      <ControlledCarousel/>
       
       <Routes>
         <Route path='/login' element={

@@ -14,7 +14,8 @@ const Main = () => {
 
 
   return (
-    <div className='main-Section'>Main
+    <div className='main-Section'>
+      <h1>Todas las peliculas</h1>
       <MoviesSection>
 
       </MoviesSection>

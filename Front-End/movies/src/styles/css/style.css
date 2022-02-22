@@ -93,6 +93,8 @@
 }
 
 .ranking-card {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
   display: -ms-grid;
   display: grid;
   -ms-grid-row: 1;
@@ -132,5 +134,12 @@
 
 .border-rankin-1 {
   border-color: #0e3fa99f;
+}
+
+.carrousel-container {
+  background-color: black;
+  color: aliceblue;
+  height: 100%;
+  overflow: hidden;
 }
 /*# sourceMappingURL=style.css.map */
