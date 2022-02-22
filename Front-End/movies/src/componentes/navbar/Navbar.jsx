@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { /*Link,*/ useNavigate } from "react-router-dom";
+import { /*Link,*/ useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../../action/actionLogin";
 import { Button, Container, Form, FormControl, Nav, Navbar, /*NavbarBrand, */NavDropdown } from "react-bootstrap"
-import { useFormik } from "formik"
-import { buscarPeliculaAsincrono } from "../../action/actionMovies";
+import querystring from 'query-string';
+import { userFormHook } from "../../hooks/userFormHook";
+//import { useFormik } from "formik"
+//import { buscarPeliculaAsincrono } from "../../action/actionMovies";
 
 const NavSection = styled.section` 
     //background-color: #b7c036;
@@ -25,30 +27,50 @@ export const NavbarMain = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const formik = useFormik({
+    /*const formik = useFormik({
         initialValues: {
             nombrePelicula: ""
         },
-        onSubmit: ({nombrePelicula})=>{dispatch(buscarPeliculaAsincrono(nombrePelicula))}
+        onSubmit: ({ nombrePelicula }) => { dispatch(buscarPeliculaAsincrono(nombrePelicula)) }
 
-    })
-
-
-
-
-
-
+    })*/
 
     const handleLogout = () => {
         dispatch(logout())
         navigate("/login")
     }
-    console.log("NAbvar");
+
+
+    const location = useLocation();
+    const { q = '' } = querystring.parse(location.search);
+
+
+    const { FormHook, handleInputChange, setFormHook, reset } = userFormHook({
+        searchText: q
+    });
+
+    //console.log("NAbvar",FormHook);
+
+    const { searchText } = FormHook;
+
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate(`?q=${searchText}`)
+        //console.log(searchText);
+    }
+
+    useEffect(() => {
+        navigate(`?q=${searchText}`)
+    }, [FormHook])
+    
+
+
 
     return (
         <NavSection >
 
-            <Navbar expand="sm" className="sectionNavBar" bg="dark" variant="dark"  >
+            <Navbar expand="lg" className="sectionNavBar" bg="dark" variant="dark"  >
                 <Container fluid >
                     <Navbar.Brand href="/main">
                         <img
@@ -64,7 +86,7 @@ export const NavbarMain = () => {
                             style={{ maxHeight: '100px' }}
                             navbarScroll>
                             <Nav.Link href="/main">
-                                <p className="navBarColor">Todas</p>
+                                Todas
                             </Nav.Link>
                             <Nav.Link href="#action2">
                                 <p className="navBarColor">Más valoradas</p>
@@ -103,14 +125,18 @@ export const NavbarMain = () => {
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-                        <Form className="d-flex" onSubmit={formik.handleSubmit}>
+                        <Form className="d-flex" 
+                        onSubmit={handleSearch/*handleSubmit*/}
+                        >
                             <FormControl
-                                type="search"
+                                type="text"
                                 placeholder="Search"
                                 className="me-2"
                                 aria-label="Search"
-                                name="nombrePelicula"
-                                onChange={formik.handleChange}
+                                /*name="nombrePelicula"*/
+                                name="searchText" 
+                                value={searchText}
+                                onChange={handleInputChange}
                             />
                             <Button type="submit" variant="outline-success">Search</Button>
                         </Form >

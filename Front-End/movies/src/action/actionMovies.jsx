@@ -79,12 +79,12 @@ export const modificarPeliculaSincrono = (pelicula) => {
 };
 
 
-export const modificarPeliculaAsincrono = (id,pelicula) => {
+export const modificarPeliculaAsincrono = (id, pelicula) => {
     return async (dispatch) => {
 
         await updateDoc(doc(db, "peliculas", id), pelicula);
         await dispatch(listarPeliculaAsincrono())
-        
+
     };
 };
 
@@ -98,20 +98,39 @@ export const buscarPeliculaSincrono = (pelicula) => {
 };
 
 
-    export const buscarPeliculaAsincrono = (nombrePelicula) => {
+export const buscarPeliculaAsincrono = (nombrePelicula) => {
 
-        return async(dispatch) => {
-           
-            const peliculaCollections = collection(db,"peliculas");
-            const q = query(peliculaCollections,where("name","==",nombrePelicula))
-            const datos = await getDocs(q);
-            //console.log(datos)
-            const pelicula = [];
-            datos.forEach((docu) => {
-                pelicula.push(docu.data())
-            }) 
-            console.log(pelicula)
-            dispatch(buscarPeliculaSincrono(pelicula))
-            //console.log(pelicula);
-        }
+    return async (dispatch) => {
+
+        const peliculaCollections = collection(db, "peliculas");
+        const q = query(peliculaCollections, where("name", "==", nombrePelicula))
+        const datos = await getDocs(q);
+        //console.log(datos)
+        const pelicula = [];
+        datos.forEach((docu) => {
+            pelicula.push(docu.data())
+        })
+        console.log(pelicula)
+        dispatch(buscarPeliculaSincrono(pelicula))
+        //console.log(pelicula);
     }
+}
+
+/*
+export const buscarPeliculaAsincrono = (nombrePelicula) => {
+
+    return async (dispatch) => {
+
+        const peliculaCollections = collection(db, "peliculas");
+        const q = query(peliculaCollections, where("name", "==", nombrePelicula))
+        const datos = await getDocs(q);
+        //console.log(datos)
+        const pelicula = [];
+        datos.forEach((docu) => {
+            pelicula.push(docu.data())
+        })
+        console.log(pelicula)
+        dispatch(buscarPeliculaSincrono(pelicula))
+        //console.log(pelicula);
+    }
+}*/
