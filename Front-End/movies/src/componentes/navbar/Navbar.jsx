@@ -45,7 +45,7 @@ export const NavbarMain = () => {
     const { q = '' } = querystring.parse(location.search);
 
 
-    const { FormHook, handleInputChange, setFormHook, reset } = userFormHook({
+    const { FormHook, handleInputChange} = userFormHook({
         searchText: q
     });
 
@@ -62,6 +62,7 @@ export const NavbarMain = () => {
 
     useEffect(() => {
         navigate(`?q=${searchText}`)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [FormHook])
     
 

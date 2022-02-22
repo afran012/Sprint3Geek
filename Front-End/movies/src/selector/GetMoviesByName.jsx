@@ -1,5 +1,3 @@
-import React from 'react'
-
 export const GetMoviesByName = (name = '', peliculas) => {
 
     if (peliculas.length!==0){
