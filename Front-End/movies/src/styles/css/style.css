@@ -30,6 +30,11 @@
   outline: none;
 }
 
+.body {
+  background-color: black;
+  color: white;
+}
+
 .imgUser {
   max-width: 10%;
   max-height: 10%;
@@ -39,8 +44,102 @@
   background-color: #000000;
 }
 
+.nav-link, .navbar-nav, .navbar-nav-scroll, .navbar-collapse {
+  color: yellow;
+}
+
 .userMenu {
   color: white;
   background-color: black;
+}
+
+.main-Section {
+  background-color: black;
+  color: white;
+}
+
+.movies-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card-container {
+  width: 220px;
+  height: 330px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  -ms-grid-rows: 25% 25% 25% 25%;
+      grid-template-rows: 25% 25% 25% 25%;
+}
+
+.imgCard {
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 4;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-area: 1/1/5/3;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.ranking-card {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 1;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 1;
+  grid-area: 1/1/2/2;
+  align-self: flex-end;
+  -ms-grid-column-align: start;
+      justify-self: start;
+  width: 100%;
+  height: 70%;
+  background-color: #000000a4;
+  border-top-right-radius: 43px;
+  border-bottom-right-radius: 43px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-style: solid;
+  border-left: none;
+  border-color: #fed841b2;
+}
+
+.rank-img-p {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 50% 50%;
+      grid-template-columns: 50% 50%;
+  -ms-grid-rows: 100%;
+      grid-template-rows: 100%;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  width: 50%;
+  height: 50%;
+  text-align: center;
+}
+
+.border-rankin-1 {
+  border-color: #0e3fa99f;
+}
+
+.carrousel-container {
+  background-color: black;
+  color: aliceblue;
+  height: 100%;
+  overflow: hidden;
 }
 /*# sourceMappingURL=style.css.map */

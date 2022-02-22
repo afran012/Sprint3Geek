@@ -1,20 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { logout } from '../../action/actionLogin'
+import { listarPeliculaAsincrono } from '../../action/actionMovies'
+import MoviesSection from '../../componentes/movies/MoviesSection'
 
 const Main = () => {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  
 
-  const handleLogout = ()=>{
-    dispatch(logout())
-    navigate("/login")
-  }
+  useEffect(() => {
+    dispatch(listarPeliculaAsincrono())
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
 
   return (
-    <div>Main
-      <button onClick={()=> {handleLogout()}}> Cerrar sesion</button>
+    <div className='main-Section'>
+      <h1>Todas las peliculas</h1>
+      <MoviesSection>
+
+      </MoviesSection>
+
     </div>
   )
 }

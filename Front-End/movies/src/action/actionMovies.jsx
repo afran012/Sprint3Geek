@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, /*query,*/ updateDoc/*, where*/ } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, getDocs, query, updateDoc, where } from "firebase/firestore";
 import { db } from "../FireBase/fireBase";
 import { typesMovies } from "../types/typesMovies";
 
@@ -79,11 +79,58 @@ export const modificarPeliculaSincrono = (pelicula) => {
 };
 
 
-export const modificarPeliculaAsincrono = (id,pelicula) => {
+export const modificarPeliculaAsincrono = (id, pelicula) => {
     return async (dispatch) => {
 
         await updateDoc(doc(db, "peliculas", id), pelicula);
         await dispatch(listarPeliculaAsincrono())
-        
+
     };
 };
+
+// Buscar
+
+export const buscarPeliculaSincrono = (pelicula) => {
+    return {
+        type: typesMovies.buscar,
+        payload: pelicula
+    };
+};
+
+
+export const buscarPeliculaAsincrono = (nombrePelicula) => {
+
+    return async (dispatch) => {
+
+        const peliculaCollections = collection(db, "peliculas");
+        const q = query(peliculaCollections, where("name", "==", nombrePelicula))
+        const datos = await getDocs(q);
+        //console.log(datos)
+        const pelicula = [];
+        datos.forEach((docu) => {
+            pelicula.push(docu.data())
+        })
+        console.log(pelicula)
+        dispatch(buscarPeliculaSincrono(pelicula))
+        //console.log(pelicula);
+    }
+}
+
+/*
+export const buscarPeliculaAsincrono = (nombrePelicula) => {
+
+    return async (dispatch) => {
+
+        const peliculaCollections = collection(db, "peliculas");
+        const q = query(peliculaCollections, where("name", "==", nombrePelicula))
+        const datos = await getDocs(q);
+        //console.log(datos)
+        const pelicula = [];
+        datos.forEach((docu) => {
+            pelicula.push(docu.data())
+        })
+        console.log(pelicula)
+        dispatch(buscarPeliculaSincrono(pelicula))
+        //console.log(pelicula);
+    }
+}*/

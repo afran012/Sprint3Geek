@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { /*Link,*/ useNavigate } from "react-router-dom";
+import { /*Link,*/ useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { logout } from "../../action/actionLogin";
 import { Button, Container, Form, FormControl, Nav, Navbar, /*NavbarBrand, */NavDropdown } from "react-bootstrap"
+import querystring from 'query-string';
+import { userFormHook } from "../../hooks/userFormHook";
+//import { useFormik } from "formik"
+//import { buscarPeliculaAsincrono } from "../../action/actionMovies";
 
 const NavSection = styled.section` 
     //background-color: #b7c036;
@@ -19,21 +23,57 @@ const style1 = {
 }
 
 export const NavbarMain = () => {
+
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    /*const formik = useFormik({
+        initialValues: {
+            nombrePelicula: ""
+        },
+        onSubmit: ({ nombrePelicula }) => { dispatch(buscarPeliculaAsincrono(nombrePelicula)) }
+
+    })*/
 
     const handleLogout = () => {
         dispatch(logout())
         navigate("/login")
     }
-    console.log("NAbvar");
+
+
+    const location = useLocation();
+    const { q = '' } = querystring.parse(location.search);
+
+
+    const { FormHook, handleInputChange} = userFormHook({
+        searchText: q
+    });
+
+    //console.log("NAbvar",FormHook);
+
+    const { searchText } = FormHook;
+
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        navigate(`?q=${searchText}`)
+        //console.log(searchText);
+    }
+
+    useEffect(() => {
+        navigate(`?q=${searchText}`)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [FormHook])
+    
+
+
 
     return (
         <NavSection >
 
-            <Navbar expand="sm" className="sectionNavBar" bg="dark" variant="dark"  >
+            <Navbar expand="lg" className="sectionNavBar" bg="dark" variant="dark"  >
                 <Container fluid >
-                    <Navbar.Brand href="#">
+                    <Navbar.Brand href="/main">
                         <img
 
                             src="https://res.cloudinary.com/doueu7nt1/image/upload/v1645037508/Peliculas/logo-blockBuster_h24ngy.svg"
@@ -43,11 +83,11 @@ export const NavbarMain = () => {
                     <Navbar.Toggle aria-controls="navbarScroll" />
                     <Navbar.Collapse id="navbarScroll">
                         <Nav
-                            className=" "
+                            className="me-auto my-2 my-lg-0"
                             style={{ maxHeight: '100px' }}
                             navbarScroll>
-                            <Nav.Link href="#action1">
-                                <p className="navBarColor">Todas</p>
+                            <Nav.Link href="/main">
+                                Todas
                             </Nav.Link>
                             <Nav.Link href="#action2">
                                 <p className="navBarColor">Más valoradas</p>
@@ -86,15 +126,21 @@ export const NavbarMain = () => {
                                 </NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
-                        <Form className="d-flex">
+                        <Form className="d-flex" 
+                        onSubmit={handleSearch/*handleSubmit*/}
+                        >
                             <FormControl
-                                type="search"
+                                type="text"
                                 placeholder="Search"
                                 className="me-2"
                                 aria-label="Search"
+                                /*name="nombrePelicula"*/
+                                name="searchText" 
+                                value={searchText}
+                                onChange={handleInputChange}
                             />
-                            <Button variant="outline-success">Search</Button>
-                        </Form>
+                            <Button type="submit" variant="outline-success">Search</Button>
+                        </Form >
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
